@@ -1,0 +1,140 @@
+* {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #2f363e;
+}
+
+#clock {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 80px;
+}
+
+#hr-dots,
+#min-dots,
+#sec-dots {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  rotate: 90deg;
+}
+
+#hr-dots::before,
+#min-dots::before,
+#sec-dots::before {
+  border-radius: 50%;
+  content: "";
+  position: absolute;
+  inset: -20px;
+  box-shadow:
+    25px 25px 75px rgba(0, 0, 0, 0.25),
+    10px 10px 70px rgba(0, 0, 0, 0.25),
+    inset 5px 5px 10px rgba(0, 0, 0, 0.5),
+    inset 5px 5px 20px rgba(255, 255, 255, 0.2),
+    inset -5px -5px 15px rgba(0, 0, 0, 0.75);
+}
+
+#sec-dots h2,
+#min-dots h2,
+#hr-dots h2 {
+  position: absolute;
+  color: var(--color);
+  transform: rotate(-90deg);
+  text-align: center;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  font-size: 4em;
+  font-weight: 500;
+  justify-content: center;
+  align-items: center;
+}
+
+#sec-dots h2 span,
+#min-dots h2 span,
+#hr-dots h2 span {
+  font-size: 0.25em;
+  position: absolute;
+  bottom: 50px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+
+#sec-dots b {
+  position: absolute;
+  color: #fff;
+  display: inline-flex;
+  transform: rotate(-90deg) translate(-30px, 90px);
+}
+
+#sec-dots .dot,
+#min-dots .dot,
+#hr-dots .dot {
+  position: absolute;
+  width: 10px;
+  height: 3px;
+  background: var(--color);
+  transform-origin: 100px;
+  top: 50%;
+}
+
+#sec-dots .active.dot,
+#min-dots .active.dot,
+#hr-dots .active.dot {
+  background: var(--color);
+  box-shadow:
+    0 0 10px var(--color),
+    0 0 20px var(--color),
+    0 0 30px var(--color);
+}
+
+#sec-dots .active.dot ~ .dot,
+#min-dots .active.dot ~ .dot,
+#hr-dots .active.dot ~ .dot {
+  background: #555;
+}
+
+#sec-dots .dot:nth-child(5n + 5),
+#min-dots .dot:nth-child(5n + 5) {
+  width: 20px;
+}
+
+#hr-dots .dot {
+  width: 20px;
+}
+
+#hr-dots .dot::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 4px;
+  height: 4px;
+  border-radius: 4px;
+  background: var(--color);
+  box-shadow:
+    1.5px 9px var(--color),
+    4px 18px var(--color),
+    7px 27px var(--color);
+}
+
+#hr-dots .dot.active ~ .dot::before {
+  background: #555;
+  box-shadow:
+    1.5px 9px #555,
+    4px 18px #555,
+    7px 27px #555;
+}
